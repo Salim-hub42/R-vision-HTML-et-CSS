@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +13,27 @@
 
     </header>
     <main>
-        <div class="container">
-            <h1><span class="material-icons" data-icon="explore"></span>Bienvenue sur mon site !</h1>
-        </div>
-    </main>
+<?php
+$serveur = "localhost";
+$login = "root";
+$mdp = "";
+try{
+    $connexion = new PDO("mysql:host=$serveur;port=3307;dbname=familles",$login,$mdp);
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connexion réussie !";
+}
+catch(PDOException $e){
+    echo "Erreur de connexion : " . $e->getMessage();
+}
+
+
+
+
+
+
+
+?>
+</main>
     <footer>
 
     </footer>
