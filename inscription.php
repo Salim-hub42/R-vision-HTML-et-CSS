@@ -6,7 +6,8 @@
     <title>Inscription</title>
 </head>
 <body>
-    <form method="POST" action="http://localhost/rév.php/traitement.php">
+
+    <form method="POST" action="C:\wamp64\www\rév.php\traitement.php">
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" placeholder="Entrez votre nom">
         <br>
