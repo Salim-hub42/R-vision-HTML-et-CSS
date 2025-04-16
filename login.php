@@ -23,15 +23,20 @@ catch(PDOException $e){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
    $email = $_POST['email'];
    $pass = $_POST['pass'];
-  if($email != "" && $pass != ""){
- $req = $connexion->prepare('SELECT * FROM gotrenk WHERE email = :email AND pass = :pass');
- $req->execute(['email' => $email, 'pass' => $pass]);
- $rep= $req->fetch();
-   if($rep['id'] != false){
-   echo " c'est ok !";
+
+  if(!empty($email) && !empty ($pass)){
+   $req = $connexion->prepare('SELECT * FROM gotrenk WHERE email = :email');
+   $req->execute(['email' => $email]);
+   $rep= $req->fetch();
+
+  if ($rep && password_verify($pass, $rep['pass'])) {
+            // Connexion réussie
+            setcookie('username', $email, time() + 3600); // Stocker uniquement l'email
+            echo "Vous êtes connecté !";
 }else{
    echo "Erreur d'authentification !";}
 }} 
+
 
 ?>
 
