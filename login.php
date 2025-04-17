@@ -29,13 +29,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
    $req->execute(['email' => $email]);
    $rep= $req->fetch();
 
-  if ($rep && password_verify($pass, $rep['pass'])) {
+  if ($rep){
+   if(password_verify($pass, $rep['pass'])){
             // Connexion réussie
-            setcookie('username', $email, time() + 3600); // Stocker uniquement l'email
+            setcookie('username', $email, time() + 7200); // Stocker uniquement l'email
             echo "Vous êtes connecté !";
 }else{
    echo "Erreur d'authentification !";}
-}} 
+}}  }
 
 
 ?>
@@ -47,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          <label for="pass">Mot de passe:</label>
          <input type="password" id="pass" name="pass" placeholder="Entrez votre mot de passe"required>
          <br>
-         <input type="submit" value=" Se connecter "name="ok">
+         <input type="submit" value=" Se connecter "name="yo">
    </form>
 
 
